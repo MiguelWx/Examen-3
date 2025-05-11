@@ -1,0 +1,107 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscaminas</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; }
+    table { margin: auto; border-collapse: collapse; }
+    td {
+      width: 30px; height: 30px;
+      border: 1px solid #444;
+      text-align: center;
+      vertical-align: middle;
+      background: #ddd;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    td.revelado { background: #fff; cursor: default; }
+    td.bomba { background: red; color: white; }
+  </style>
+</head>
+<body>
+  <h1>Buscaminas</h1>
+  <p>Haz clic para revelar. ¡Evita las bombas!</p>
+  <table id="tablero"></table>
+
+  <script>
+    const filas = 8;
+    const columnas = 8;
+    const bombas = 10;
+    const tablero = [];
+    const tablaHTML = document.getElementById("tablero");
+
+    function crearTablero() {
+      for (let i = 0; i < filas; i++) {
+        tablero[i] = [];
+        const fila = tablaHTML.insertRow();
+        for (let j = 0; j < columnas; j++) {
+          tablero[i][j] = { bomba: false, revelado: false, contador: 0 };
+          const celda = fila.insertCell();
+          celda.onclick = () => revelar(i, j, celda);
+        }
+      }
+
+      // Colocar bombas
+      let colocadas = 0;
+      while (colocadas < bombas) {
+        let x = Math.floor(Math.random() * filas);
+        let y = Math.floor(Math.random() * columnas);
+        if (!tablero[x][y].bomba) {
+          tablero[x][y].bomba = true;
+          colocadas++;
+        }
+      }
+
+      // Contadores
+      for (let i = 0; i < filas; i++) {
+        for (let j = 0; j < columnas; j++) {
+          if (!tablero[i][j].bomba) {
+            let c = 0;
+            for (let dx = -1; dx <= 1; dx++) {
+              for (let dy = -1; dy <= 1; dy++) {
+                const ni = i + dx, nj = j + dy;
+                if (ni >= 0 && ni < filas && nj >= 0 && nj < columnas && tablero[ni][nj].bomba) {
+                  c++;
+                }
+              }
+            }
+            tablero[i][j].contador = c;
+          }
+        }
+      }
+    }
+
+    function revelar(i, j, celda) {
+      const casilla = tablero[i][j];
+      if (casilla.revelado) return;
+      casilla.revelado = true;
+      celda.classList.add("revelado");
+
+      if (casilla.bomba) {
+        celda.classList.add("bomba");
+        celda.textContent = "💣";
+        alert("¡Boom! Has perdido.");
+        location.reload();
+      } else {
+        if (casilla.contador > 0) {
+          celda.textContent = casilla.contador;
+        } else {
+          for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+              const ni = i + dx, nj = j + dy;
+              if (ni >= 0 && ni < filas && nj >= 0 && nj < columnas) {
+                const celdaVecina = tablaHTML.rows[ni].cells[nj];
+                revelar(ni, nj, celdaVecina);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    crearTablero();
+  </script>
+</body>
+</html>
