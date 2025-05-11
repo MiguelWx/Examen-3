@@ -58,6 +58,9 @@ Guarda el archivo con Ctrl + S y sal con Ctrl + X.
 
 Pega aqui el HTML de tu juego Buscaminas. Guarda y cierra.
 
+### El juego estara hecho con HTML y JavaScript, y ademas usara el servidor Web Nginx para poder correr el juego.
+Usara especificamente Nginx alpine, que es una versión ligera del servidor Nginx como base.
+
 ------------------------
 
 # 7. CONSTRUIR LA IMAGEN DOCKER
@@ -82,7 +85,7 @@ Ejecuta el contenedor en segundo plano y lo expone al puerto 80.
 # RESULTADO FINAL
 
 Puedes abrir un navegador y visitar: http://[IP-PuBLICA-DE-TU-SERVIDOR]
-Ahi veras tu juego Buscaminas en funcionamiento.
+Ahi veras el juego Buscaminas en funcionamiento.
 
 ---------------
 
