@@ -1,13 +1,13 @@
 # Examen-3
-Examen 3 telematica 
+Examen 3 Telemática 
 
 PASO A PASO: Desplegar juego Buscaminas en HTML usando Docker en una instancia Ubuntu
 
 ## 1. CONECTARSE A LA INSTANCIA SSH
 
-### ssh -i "llave.pem" ubuntu@ip-publica-instancia
+### ssh -i "llave.pem" ubuntu@ip-pública-instancia
 
-Esto establece una conexion remota con tu servidor.
+Esto establece una conexión remota con tu servidor.
 
 --------------------------------
 
@@ -56,10 +56,10 @@ Guarda el archivo con Ctrl + S y sal con Ctrl + X.
 
 ### sudo nano index.html
 
-Pega aqui el HTML de tu juego Buscaminas. Guarda y cierra.
+Pega aquí el HTML de tu juego Buscaminas. Guarda y cierra.
 
-### El juego estara hecho con HTML y JavaScript, y ademas usara el servidor Web Nginx para poder correr el juego.
-Usara especificamente Nginx alpine, que es una versión ligera del servidor Nginx como base.
+### El juego estará hecho con HTML y JavaScript, y además usará el servidor web Nginx para poder correr el juego.
+Usará específicamente Nginx alpine, que es una versión ligera del servidor Nginx como base.
 
 ------------------------
 
@@ -73,10 +73,10 @@ Construye la imagen con nombre "busca-minas-html" basada en tu Dockerfile.
 
 ## 8. EJECUTAR EL CONTENEDOR
 
-### sudo docker run -d -p 80:80 --restart unless-stopped --name snake-game snake-game
+### sudo docker run -d -p 80:80 --restart unless-stopped --name busca-minas busca-minas
 
-La parte de "--restart unless-stopped" reinicia el contenedor automaticamente si se cae,
-osea que cada que apagues la instancia y quieras volver a iniciar el busca minas, solo tendras que encender la intancia y se activara automaticamente.
+La parte de "--restart unless-stopped" reinicia el contenedor automáticamente si se cae,
+o sea que cada que apagues la instancia y quieras volver a iniciar el Buscaminas, solo tendrás que encender la instancia y se activará automáticamente.
 
 Ejecuta el contenedor en segundo plano y lo expone al puerto 80.
 
@@ -84,8 +84,9 @@ Ejecuta el contenedor en segundo plano y lo expone al puerto 80.
 
 ## RESULTADO FINAL
 
-Puedes abrir un navegador y visitar: http://[IP-PuBLICA-DE-TU-SERVIDOR]
-Ahi veras el juego Buscaminas en funcionamiento.
+Puedes abrir un navegador y visitar: http://[IP-PÚBLICA-DE-TU-SERVIDOR]
+Ahí verás el juego Buscaminas en funcionamiento.
 
 ---------------
+
 
