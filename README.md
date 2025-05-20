@@ -73,7 +73,7 @@ Construye la imagen con nombre "busca-minas-html" basada en tu Dockerfile.
 
 ## 8. EJECUTAR EL CONTENEDOR
 
-### sudo docker run -d -p 80:80 --restart unless-stopped --name busca-minas busca-minas
+### sudo docker run -d -p 80:80 --restart unless-stopped --name busca-minas busca-minas-html
 
 La parte de "--restart unless-stopped" reinicia el contenedor automáticamente si se cae,
 o sea que cada que apagues la instancia y quieras volver a iniciar el Buscaminas, solo tendrás que encender la instancia y se activará automáticamente.
